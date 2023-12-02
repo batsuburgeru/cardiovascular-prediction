@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore", category=FutureWarning, module="sklearn")
 
 #KNN PRELIMINARY
 
-def knnPreliminary(age, gender, restbps, history, cp):
+def knnPreliminary(age, gender, trestbps, history, cp):
     # Read the dataset
     datasetKnnPrelim = pd.read_csv('./src/assets/heart_attack.csv')
     datasetKnnPrelim['history'] = datasetKnnPrelim['heart_disease'].copy()
@@ -35,7 +35,7 @@ def knnPreliminary(age, gender, restbps, history, cp):
     y_pred = knn.predict(X_test)
 
     # Create a new sample for prediction with feature names
-    userInput = pd.DataFrame([[age, gender, restbps, history, cp]],
+    userInput = pd.DataFrame([[age, gender, trestbps, history, cp]],
                              columns=['age', 'gender', 'trestbps', 'history', 'cp'])
 
     # Make a prediction on the new sample
@@ -72,7 +72,7 @@ def knnPreliminary(age, gender, restbps, history, cp):
     knnPrelimRmse = round(np.sqrt(knnPrelimMse),5)
     print(f"Root Mean Squared Error (RMSE): {knnPrelimRmse}")
     
-    return knnPrelimProbability, knnPrelimAccuracy, knnPrelimConfusionMatrix, knnPrelimPrecision, knnPrelimRecall, knnPrelimF1, knnPrelimMse, knnPrelimRmse
+    return knnPrelimPredictedClass, knnPrelimProbability, knnPrelimAccuracy, knnPrelimConfusionMatrix, knnPrelimPrecision, knnPrelimRecall, knnPrelimF1, knnPrelimMse, knnPrelimRmse
 
 #KNN MORE THAN 35%
 
@@ -148,7 +148,7 @@ def knnMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, 
         
     plot_scatter_matrix(X, y)   
     
-    return knnMoreThanProbability, knnMoreThanAccuracy, knnMoreThanConfusionMatrix, knnMoreThanPrecision, knnMoreThanRecall, knnMoreThanF1, knnMoreThanMse, knnMoreThanRmse
+    return knnMoreThanPredictedClass, knnMoreThanProbability, knnMoreThanAccuracy, knnMoreThanConfusionMatrix, knnMoreThanPrecision, knnMoreThanRecall, knnMoreThanF1, knnMoreThanMse, knnMoreThanRmse
 
 #KNN LESS THAN 35%
 
@@ -223,12 +223,12 @@ def knnLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
         
     plot_scatter_matrix(X, y)
     
-    return knnLessThanProbability, knnLessThanAccuracy, knnLessThanConfusionMatrix, knnLessThanPrecision, knnLessThanRecall, knnLessThanF1, knnLessThanMse, knnLessThanRmse
+    return knnLessThanPredictedClass, knnLessThanProbability, knnLessThanAccuracy, knnLessThanConfusionMatrix, knnLessThanPrecision, knnLessThanRecall, knnLessThanF1, knnLessThanMse, knnLessThanRmse
 
 #SVM PRELIMINARY
 
-def svmPreliminary(age, gender, restbps, history, cp):
-    datasetSvmPrelim = pd.read_csv('heart_attack.csv')
+def svmPreliminary(age, gender, trestbps, history, cp):
+    datasetSvmPrelim = pd.read_csv('./src/assets/heart_attack.csv')
     datasetSvmPrelim['history'] = datasetSvmPrelim['heart_disease'].copy()
 
     X = datasetSvmPrelim[['age', 'gender', 'trestbps', 'history', 'cp']]
@@ -248,7 +248,7 @@ def svmPreliminary(age, gender, restbps, history, cp):
     
     y_pred = svm.predict(X_test)
 
-    userInput = pd.DataFrame([[age, gender, restbps, history, cp]],
+    userInput = pd.DataFrame([[age, gender, trestbps, history, cp]],
                              columns=['age', 'gender', 'trestbps', 'history', 'cp'])
     
     userInputStandardized = scaler.transform(userInput)
@@ -286,7 +286,7 @@ def svmPreliminary(age, gender, restbps, history, cp):
     svmPrelimRmse = round(np.sqrt(svmPrelimMse),5)
     print(f"Root Mean Squared Error (RMSE): {svmPrelimRmse}")
     
-    return svmPrelimProbability, svmPrelimAccuracy, svmPrelimConfusionMatrix, svmPrelimPrecision, svmPrelimRecall, svmPrelimF1, svmPrelimMse, svmPrelimRmse
+    return svmPrelimPredictedClass, svmPrelimProbability, svmPrelimAccuracy, svmPrelimConfusionMatrix, svmPrelimPrecision, svmPrelimRecall, svmPrelimF1, svmPrelimMse, svmPrelimRmse
 
 #SVM More Than 35%
 
@@ -383,7 +383,7 @@ def svmMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, 
     
     plt.show()
         
-    return svmMoreThanProbability, svmMoreThanAccuracy, svmMoreThanConfusionMatrix, svmMoreThanPrecision, svmMoreThanRecall, svmMoreThanF1, svmMoreThanMse, svmMoreThanRmse
+    return svmMoreThanPredictedClass, svmMoreThanProbability, svmMoreThanAccuracy, svmMoreThanConfusionMatrix, svmMoreThanPrecision, svmMoreThanRecall, svmMoreThanF1, svmMoreThanMse, svmMoreThanRmse
 
 #SVM LESS THAN 35%
 
@@ -481,12 +481,12 @@ def svmLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
     
     plt.show()
     
-    return svmLessThanProbability, svmLessThanAccuracy, svmLessThanConfusionMatrix, svmLessThanPrecision, svmLessThanRecall, svmLessThanF1, svmLessThanMse, svmLessThanRmse
+    return svmLessThanPredictedClass, svmLessThanProbability, svmLessThanAccuracy, svmLessThanConfusionMatrix, svmLessThanPrecision, svmLessThanRecall, svmLessThanF1, svmLessThanMse, svmLessThanRmse
 
 #LOGISTIC REGRESSION PRELIMINARY
 
 def logisticRegressionPreliminary(age, gender, restbps, history, cp):
-    datasetLogisticRegressionPrelim = pd.read_csv('heart_attack.csv')
+    datasetLogisticRegressionPrelim = pd.read_csv('./src/assets/heart_attack.csv')
     datasetLogisticRegressionPrelim['history'] = datasetLogisticRegressionPrelim['heart_disease'].copy()
 
     X = datasetLogisticRegressionPrelim[['age', 'gender', 'trestbps', 'history', 'cp']]
@@ -540,7 +540,7 @@ def logisticRegressionPreliminary(age, gender, restbps, history, cp):
     lrPrelimRmse = round(np.sqrt(lrPrelimMse),5)
     print(f"Root Mean Squared Error (RMSE): {lrPrelimRmse}")
     
-    return lrPrelimProbability, lrPrelimAccuracy, lrPrelimConfusionMatrix, lrPrelimPrecision, lrPrelimRecall, lrPrelimF1, lrPrelimMse, lrPrelimRmse
+    return lrPrelimPredictedClass, lrPrelimProbability, lrPrelimAccuracy, lrPrelimConfusionMatrix, lrPrelimPrecision, lrPrelimRecall, lrPrelimF1, lrPrelimMse, lrPrelimRmse
 
 #LOGISTIC REGRESSION MORE THAN 35%
 
@@ -623,7 +623,7 @@ def logisticRegressionMoreThan(age, gender, restbps, history, cp, chol, fbs, res
         
     plot_scatter_matrix(X, y)
     
-    return lrMoreThanProbability, lrMoreThanAccuracy, lrMoreThanConfusionMatrix, lrMoreThanPrecision, lrMoreThanRecall, lrMoreThanF1, lrMoreThanMse, lrMoreThanRmse
+    return lrMoreThanPredictedClass, lrMoreThanProbability, lrMoreThanAccuracy, lrMoreThanConfusionMatrix, lrMoreThanPrecision, lrMoreThanRecall, lrMoreThanF1, lrMoreThanMse, lrMoreThanRmse
 
 #LOGISTIC REGRESSION LESS THAN 35%
 
@@ -697,5 +697,5 @@ def logisticRegressionLessThan(age, gender, restbps, history, cp, chol, fbs, res
         
     plot_scatter_matrix(X, y)
     
-    return lrLessThanProbability, lrLessThanAccuracy, lrLessThanConfusionMatrix, lrLessThanPrecision, lrLessThanRecall, lrLessThanF1, lrLessThanMse, lrLessThanRmse
+    return lrLessThanPredictedClass, lrLessThanProbability, lrLessThanAccuracy, lrLessThanConfusionMatrix, lrLessThanPrecision, lrLessThanRecall, lrLessThanF1, lrLessThanMse, lrLessThanRmse
 

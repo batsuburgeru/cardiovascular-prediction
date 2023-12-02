@@ -1,25 +1,54 @@
 <template>
-    <div v-if="visible" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true" role="dialog" style="display:block">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Good Day! Here is your evaluation</h5>
-            <button type="button" @click="closeModal" class="btn-close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Age: XX</p>
-            <p>Gender: Male</p>
-            <p>History of Heart Attack: Yes</p>
-            <p>CVD Probability: Over **% HIGH CHANCE OF CVD</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" @click="closeModal" class="btn btn-primary">Close</button>
-          </div>
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel">Logistic Regression</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Show a second modal and hide this one with the button below.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
         </div>
       </div>
     </div>
+  </div>
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">KNN</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Show a third modal and hide this one with the button below.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel3">SVM</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Hide this modal and show the first with the button below.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-dismiss="modal" @click="navigateToMoreThan">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
   </template>
-  
+    
   <script>
   export default {
     name: 'MyModal',
@@ -27,12 +56,16 @@
       visible: Boolean,
     },
     methods: {
+      navigateToMoreThan() {
+    this.$router.push('/moreThan');
+  },
       closeModal() {
         this.$emit('update:visible', false);
       },
-    },
-    openModal() {
-      this.modalVisible = true;
+      openModal() {
+        this.modalVisible = true;
+      },
     },
   }
   </script>
+  
