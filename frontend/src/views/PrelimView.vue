@@ -1,7 +1,7 @@
 <template>
   <main class="home m-2" style="overflow-x: hidden;">
     <NavBar/>
-    <ModalPrelim :visible="modalVisible" @update:visible="modalVisible = $event"></ModalPrelim>
+    <ModalPrelim :visible="modalVisible" :data="responseData" @update:visible="modalVisible = $event"></ModalPrelim>
     <div class="prelim container-fluid align-items-center" style="height: calc(100vh - 95px); background-color: white;" >
       <div class="row justify-content-center p-5">
         <div class="col-lg-5 text-start p-5" style="background-color: #E5FCFF;">
@@ -65,6 +65,7 @@ export default {
   },
   data() {
     return {
+      responseData: null,
       modalVisible: false,
       age: '',
       gender: '',
@@ -88,11 +89,12 @@ export default {
           cp: this.cp
         });
         if (response.status === 200) {
-          console.log('Request Successful:', response.data);
-        } else {
-          console.error('Request Failed:', response.data);
-          alert('Request Failed:' + response.data.message);
-        }
+    this.responseData = response.data;
+    console.log('Request Successful:', response.data);
+  } else {
+    console.error('Request Failed:', response.data);
+    alert('Request Failed:' + response.data.message);
+  }
       } catch (error) {
         console.error('Request Failed:', error.message);
       }
