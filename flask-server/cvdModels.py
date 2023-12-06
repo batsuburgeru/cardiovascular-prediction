@@ -78,7 +78,7 @@ def knnPreliminary(age, gender, trestbps, history, cp):
 
 def knnMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, thal):
     # Read the dataset
-    datasetKnnMoreThan = pd.read_csv('heart_attack.csv')
+    datasetKnnMoreThan = pd.read_csv('./src/assets/heart_attack.csv')
     datasetKnnMoreThan['history'] = datasetKnnMoreThan['heart_disease'].copy()
 
     # Features and labels
@@ -153,7 +153,7 @@ def knnMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, 
 #KNN LESS THAN 35%
 
 def knnLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
-    datasetKnnLessThan = pd.read_csv('heart_attack.csv')
+    datasetKnnLessThan = pd.read_csv('./src/assets/heart_attack.csv')
     datasetKnnLessThan['history'] = datasetKnnLessThan['heart_disease'].copy()
 
     # Features and labels
@@ -291,7 +291,7 @@ def svmPreliminary(age, gender, trestbps, history, cp):
 #SVM More Than 35%
 
 def svmMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, thal):
-    datasetSvmMoreThan = pd.read_csv('heart_attack.csv')
+    datasetSvmMoreThan = pd.read_csv('./src/assets/heart_attack.csv')
     datasetSvmMoreThan['history'] = datasetSvmMoreThan['heart_disease'].copy()
 
     X = datasetSvmMoreThan[['age', 'gender', 'trestbps', 'history', 'cp', 'chol', 'fbs', 'restecg', 'thalach', 'thal']]
@@ -388,7 +388,7 @@ def svmMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, 
 #SVM LESS THAN 35%
 
 def svmLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
-    datasetSvmLessThan = pd.read_csv('heart_attack.csv')
+    datasetSvmLessThan = pd.read_csv('./src/assets/heart_attack.csv')
     datasetSvmLessThan['history'] = datasetSvmLessThan['heart_disease'].copy()
 
     X = datasetSvmLessThan[['age', 'gender', 'trestbps', 'history', 'cp', 'chol', 'fbs', 'restecg']]
@@ -554,7 +554,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, mean_squared_error
 
 def logisticRegressionMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, thal):
-    datasetLrMoreThan = pd.read_csv('heart_attack.csv')
+    datasetLrMoreThan = pd.read_csv('./src/assets/heart_attack.csv')
     datasetLrMoreThan['history'] = datasetLrMoreThan['heart_disease'].copy()
 
     X = datasetLrMoreThan[['age', 'gender', 'trestbps', 'history', 'cp', 'chol', 'fbs', 'restecg', 'thalach', 'thal']]
@@ -628,7 +628,7 @@ def logisticRegressionMoreThan(age, gender, restbps, history, cp, chol, fbs, res
 #LOGISTIC REGRESSION LESS THAN 35%
 
 def logisticRegressionLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
-    datasetLrLessThan = pd.read_csv('heart_attack.csv')
+    datasetLrLessThan = pd.read_csv('./src/assets/heart_attack.csv')
     datasetLrLessThan['history'] = datasetLrLessThan['heart_disease'].copy()
 
     X = datasetLrLessThan[['age', 'gender', 'trestbps', 'history', 'cp', 'chol', 'fbs', 'restecg']]

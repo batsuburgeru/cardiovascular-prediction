@@ -82,12 +82,20 @@
     },
     methods: {
       navigateToNextPage() {
-        if (this.responseData.SVM_Probability >= 35){
+      const currentPath = this.$route.path;
+      if (this.responseData.SVM_Probability >= 35) {
+        // Check the current URL and navigate accordingly
+        if (currentPath === '/moreThan') {
+          this.$router.push('/anotherMoreThanRoute');
+        } else if (currentPath === '/lessThan') {
+          this.$router.push('/anotherLessThanRoute');
+        } else {
           this.$router.push('/moreThan');
         }
-        else {
-          this.$router.push('/lessThan')
-        }
+      } else {
+        // Navigate to another route or keep the same logic as needed
+        this.$router.push('/lessThan');
+      }
   },
       closeModal() {
         this.$emit('update:visible', false);

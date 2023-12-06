@@ -1,7 +1,7 @@
 <template>
   <main class="home m-2" style="overflow-x: hidden;">
     <NavBar/>
-    <ModalPrelim :visible="modalVisible" :responseData="responseData" @update:visible="modalVisible = $event"></ModalPrelim>
+    <ResultModal :visible="modalVisible" :responseData="responseData" @update:visible="modalVisible = $event"></ResultModal>
     <div class="prelim container-fluid align-items-center" style="height: calc(100vh - 95px); background-color: white;" >
       <div class="row justify-content-center p-5">
         <div class="col-lg-5 text-start p-5" style="background-color: #E5FCFF;">
@@ -54,14 +54,14 @@
 <script>
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue'
-import ModalPrelim from '@/components/ModalPrelim.vue'
+import ResultModal from '@/components/ResultModal.vue'
 import axios from 'axios';
 import { Modal } from 'bootstrap';
 
 export default {
   name: 'PrelimView',
   components: {
-    NavBar, ModalPrelim
+    NavBar, ResultModal
   },
   data() {
     return {
