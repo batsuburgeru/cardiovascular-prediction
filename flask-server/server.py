@@ -1,7 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from cvdModels import knnPreliminary, logisticRegressionPreliminary, svmPreliminary, logisticRegressionMoreThan, knnMoreThan, svmMoreThan, logisticRegressionLessThan, knnLessThan, svmLessThan
 from flask_cors import CORS
 import numpy as np
+from fpdf import FPDF
+import os
 
 app = Flask(__name__)
 CORS(app, origins="*")
@@ -25,7 +27,7 @@ def prelim():
         'Logistic_Regression_Predicted_Class': lrPrelimPredictedClass.tolist(),
         'Logistic_Regression_Probability': lrPrelimProbability,
         'Logistic_Regression_Accuracy': lrPrelimAccuracy,
-        'Logistic_Regression_Confusion Matrix': lrPrelimConfusionMatrix.tolist(),
+        'Logistic_Regression_Confusion_Matrix': lrPrelimConfusionMatrix.tolist(),
         'Logistic_Regression_Precision': lrPrelimPrecision,
         'Logistic_Regression_Recall': lrPrelimRecall,
         'Logistic_Regression_F1_Score': lrPrelimF1,
@@ -85,7 +87,7 @@ def moreThan():
         'Logistic_Regression_Predicted_Class': lrMoreThanPredictedClass.tolist(),
         'Logistic_Regression_Probability': lrMoreThanProbability,
         'Logistic_Regression_Accuracy': lrMoreThanAccuracy,
-        'Logistic_Regression_Confusion Matrix': lrMoreThanConfusionMatrix.tolist(),
+        'Logistic_Regression_Confusion_Matrix': lrMoreThanConfusionMatrix.tolist(),
         'Logistic_Regression_Precision': lrMoreThanPrecision,
         'Logistic_Regression_Recall': lrMoreThanRecall,
         'Logistic_Regression_F1_Score': lrMoreThanF1,
@@ -133,8 +135,6 @@ def lessThan():
     chol = data['chol']
     fbs = data['fbs']
     restecg = data['restecg']
-    thalach = data['thalach']
-    thal = data['thal']
 
     lrLessThanPredictedClass, lrLessThanProbability, lrLessThanAccuracy, lrLessThanConfusionMatrix, lrLessThanPrecision, lrLessThanRecall, lrLessThanF1, lrLessThanMse, lrLessThanRmse = logisticRegressionLessThan(age, gender, trestbps, history, cp, chol, fbs, restecg)
     knnLessThanPredictedClass, knnLessThanProbability, knnLessThanAccuracy, knnLessThanConfusionMatrix, knnLessThanPrecision, knnLessThanRecall, knnLessThanF1, knnLessThanMse, knnLessThanRmse = knnLessThan(age, gender, trestbps, history, cp, chol, fbs, restecg)
@@ -144,7 +144,7 @@ def lessThan():
         'Logistic_Regression_Predicted_Class': lrLessThanPredictedClass.tolist(),
         'Logistic_Regression_Probability': lrLessThanProbability,
         'Logistic_Regression_Accuracy': lrLessThanAccuracy,
-        'Logistic_Regression_Confusion Matrix': lrLessThanConfusionMatrix.tolist(),
+        'Logistic_Regression_Confusion_Matrix': lrLessThanConfusionMatrix.tolist(),
         'Logistic_Regression_Precision': lrLessThanPrecision,
         'Logistic_Regression_Recall': lrLessThanRecall,
         'Logistic_Regression_F1_Score': lrLessThanF1,
@@ -179,6 +179,24 @@ def lessThan():
     }
 
     return jsonify(response), 200, cors_headers
+
+@app.route('/getresult', methods=['GET'])
+def get_pdf():
+    pdf = FPDF()
+
+    directory = 'src/assets/visualizations'
+
+    # List of images
+    images = [os.path.join(directory, img) for img in os.listdir(directory) if img.endswith(".png")]
+
+    for image in images:
+        pdf.add_page()
+        pdf.image(image, x=10, y=10, w=100)  # Adjust x, y, w as needed
+
+    pdf_filename = "yourfile.pdf"
+    pdf.output(pdf_filename, "F")
+
+    return send_file(pdf_filename, mimetype='application/pdf')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

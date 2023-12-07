@@ -58,9 +58,7 @@ export default {
       lessThanData: {
         chol: '',
         fbs: '',
-        restecg: '',
-        thalach: '',
-        thal: ''   
+        restecg: '' 
       },
     };
   },
@@ -80,11 +78,9 @@ methods: {
         trestbps: this.prelimData.trestbps,
         history: this.prelimData.history,
         cp: this.prelimData.cp,
-        chol: this.moreThanData.chol,
-        fbs: this.moreThanData.fbs,
-        restecg: this.moreThanData.restecg,
-        thalach: this.moreThanData.thalach,
-        thal: this.moreThanData.thal
+        chol: this.lessThanData.chol,
+        fbs: this.lessThanData.fbs,
+        restecg: this.lessThanData.restecg
       });
       if(response.status === 200) {
         this.responseData = response.data;

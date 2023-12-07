@@ -144,7 +144,8 @@ def knnMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, 
         # Create a pairplot for the selected features
         sns.pairplot(data_with_target, vars=selected_features, hue='heart_disease', palette='husl', markers=['o', 's'])
         plt.suptitle('Scatterplot Matrix for Selected Features', y=1.02)
-        plt.show()
+
+        plt.savefig("src/assets/visualizations/knnResult.png")
         
     plot_scatter_matrix(X, y)   
     
@@ -219,7 +220,8 @@ def knnLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
         # Create a pairplot for the selected features
         sns.pairplot(data_with_target, vars=selected_features, hue='heart_disease', palette='husl', markers=['o', 's'])
         plt.suptitle('Scatterplot Matrix for Selected Features', y=1.02)
-        plt.show()
+        
+        plt.savefig("src/assets/visualizations/knnResult.png")
         
     plot_scatter_matrix(X, y)
     
@@ -381,7 +383,7 @@ def svmMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, 
     for j in range(num_subplots, len(axs)):
         axs[j].axis('off')
     
-    plt.show()
+    plt.savefig("src/assets/visualizations/svmResult.png")
         
     return svmMoreThanPredictedClass, svmMoreThanProbability, svmMoreThanAccuracy, svmMoreThanConfusionMatrix, svmMoreThanPrecision, svmMoreThanRecall, svmMoreThanF1, svmMoreThanMse, svmMoreThanRmse
 
@@ -479,7 +481,7 @@ def svmLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
     for j in range(num_subplots, len(axs)):
         axs[j].axis('off')
     
-    plt.show()
+    plt.savefig("src/assets/visualizations/svmResult.png")
     
     return svmLessThanPredictedClass, svmLessThanProbability, svmLessThanAccuracy, svmLessThanConfusionMatrix, svmLessThanPrecision, svmLessThanRecall, svmLessThanF1, svmLessThanMse, svmLessThanRmse
 
@@ -543,15 +545,6 @@ def logisticRegressionPreliminary(age, gender, restbps, history, cp):
     return lrPrelimPredictedClass, lrPrelimProbability, lrPrelimAccuracy, lrPrelimConfusionMatrix, lrPrelimPrecision, lrPrelimRecall, lrPrelimF1, lrPrelimMse, lrPrelimRmse
 
 #LOGISTIC REGRESSION MORE THAN 35%
-
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, mean_squared_error
 
 def logisticRegressionMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, thal):
     datasetLrMoreThan = pd.read_csv('./src/assets/heart_attack.csv')
@@ -619,7 +612,8 @@ def logisticRegressionMoreThan(age, gender, restbps, history, cp, chol, fbs, res
         # Create a pairplot for the selected features
         sns.pairplot(data_with_target, vars=selected_features, hue='heart_disease', palette='husl', markers=['o', 's'])
         plt.suptitle('Scatterplot Matrix for Selected Features', y=1.02)
-        plt.show()
+        
+        plt.savefig("src/assets/visualizations/logRegResult.png")
         
     plot_scatter_matrix(X, y)
     
@@ -693,7 +687,8 @@ def logisticRegressionLessThan(age, gender, restbps, history, cp, chol, fbs, res
         # Create a pairplot for the selected features
         sns.pairplot(data_with_target, vars=selected_features, hue='heart_disease', palette='husl', markers=['o', 's'])
         plt.suptitle('Scatterplot Matrix for Selected Features', y=1.02)
-        plt.show()
+        
+        plt.savefig("src/assets/visualizations/logRegResult.png")
         
     plot_scatter_matrix(X, y)
     
