@@ -99,9 +99,9 @@
       if (this.responseData.SVM_Probability >= 35) {
         // Check the current URL and navigate accordingly
         if (currentPath === '/moreThan') {
-          this.$router.push('/anotherMoreThanRoute');
+          this.$router.push('/getResult');
         } else if (currentPath === '/lessThan') {
-          this.$router.push('/anotherLessThanRoute');
+          this.$router.push('/getResult');
         } else {
           this.$router.push('/moreThan');
         }

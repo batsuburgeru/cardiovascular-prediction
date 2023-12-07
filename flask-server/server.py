@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_from_directory
 from cvdModels import knnPreliminary, logisticRegressionPreliminary, svmPreliminary, logisticRegressionMoreThan, knnMoreThan, svmMoreThan, logisticRegressionLessThan, knnLessThan, svmLessThan
 from flask_cors import CORS
 import numpy as np
@@ -180,23 +180,22 @@ def lessThan():
 
     return jsonify(response), 200, cors_headers
 
-@app.route('/getresult', methods=['GET'])
-def get_pdf():
-    pdf = FPDF()
+@app.route('/getImages', methods=['GET'])
+def get_images():
+    try:
+        image_names = os.listdir('src/assets/visualizations')
+        image_urls = [f'http://localhost:5000/sendImage/{image}' for image in image_names]
+        return jsonify({'image_urls': image_urls})
+    except Exception as e:
+        return str(e)
 
-    directory = 'src/assets/visualizations'
+@app.route('/sendImage/<image_name>', methods=['GET'])
+def send_image(image_name):
+    try:
+        return send_from_directory('src/assets/visualizations', image_name)
+    except Exception as e:
+        return str(e)
 
-    # List of images
-    images = [os.path.join(directory, img) for img in os.listdir(directory) if img.endswith(".png")]
-
-    for image in images:
-        pdf.add_page()
-        pdf.image(image, x=10, y=10, w=100)  # Adjust x, y, w as needed
-
-    pdf_filename = "yourfile.pdf"
-    pdf.output(pdf_filename, "F")
-
-    return send_file(pdf_filename, mimetype='application/pdf')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

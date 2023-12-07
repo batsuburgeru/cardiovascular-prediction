@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import PrelimView from '../views/PrelimView.vue'
 import MoreThan from '../views/MoreThan.vue'
 import LessThan from '../views/LessThan.vue'
+import ResultView from '../views/ResultView.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/lessThan',
     name: 'LessThan',
     component: LessThan
+  },
+  {
+    path: '/getresult',
+    name: 'GetResult',
+    component: ResultView
   }
 ]
 
