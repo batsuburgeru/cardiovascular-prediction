@@ -145,7 +145,7 @@ def knnMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, 
         sns.pairplot(data_with_target, vars=selected_features, hue='heart_disease', palette='husl', markers=['o', 's'])
         plt.suptitle('Scatterplot Matrix for Selected Features', y=1.02)
 
-        plt.savefig("src/assets/visualizations/knnResult.png")
+        #plt.savefig("src/assets/visualizations/knnResult.png")
         
     plot_scatter_matrix(X, y)   
     
@@ -221,7 +221,7 @@ def knnLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
         sns.pairplot(data_with_target, vars=selected_features, hue='heart_disease', palette='husl', markers=['o', 's'])
         plt.suptitle('Scatterplot Matrix for Selected Features', y=1.02)
         
-        plt.savefig("src/assets/visualizations/knnResult.png")
+        #plt.savefig("src/assets/visualizations/knnResult.png")
         
     plot_scatter_matrix(X, y)
     
@@ -613,7 +613,7 @@ def logisticRegressionMoreThan(age, gender, restbps, history, cp, chol, fbs, res
         sns.pairplot(data_with_target, vars=selected_features, hue='heart_disease', palette='husl', markers=['o', 's'])
         plt.suptitle('Scatterplot Matrix for Selected Features', y=1.02)
         
-        plt.savefig("src/assets/visualizations/logRegResult.png")
+        #plt.savefig("src/assets/visualizations/logRegResult.png")
         
     plot_scatter_matrix(X, y)
     
@@ -688,7 +688,7 @@ def logisticRegressionLessThan(age, gender, restbps, history, cp, chol, fbs, res
         sns.pairplot(data_with_target, vars=selected_features, hue='heart_disease', palette='husl', markers=['o', 's'])
         plt.suptitle('Scatterplot Matrix for Selected Features', y=1.02)
         
-        plt.savefig("src/assets/visualizations/logRegResult.png")
+        #plt.savefig("src/assets/visualizations/logRegResult.png")
         
     plot_scatter_matrix(X, y)
     

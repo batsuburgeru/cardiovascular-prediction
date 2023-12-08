@@ -56,7 +56,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+  <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1" >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -68,7 +68,7 @@
           <p>SVM Probability: {{ responseData.SVM_Probability }}</p>
           <p>SVM Accuracy: {{ responseData.SVM_Accuracy }}</p>
           <div style="text-align: left;">
-            <p>KNN Confusion Matrix:</p>
+            <p>SVM Confusion Matrix:</p>
             <p>{{ responseData.SVM_Confusion_Matrix[0] }}</p>
             <p>{{ responseData.SVM_Confusion_Matrix[1] }}</p>
           </div>
@@ -85,7 +85,7 @@
     </div>
   </div>
   </template>
-    
+
   <script>
   export default {
     name: 'MyModal',
@@ -96,20 +96,17 @@
     methods: {
       navigateToNextPage() {
       const currentPath = this.$route.path;
-      if (this.responseData.SVM_Probability >= 35) {
-        // Check the current URL and navigate accordingly
-        if (currentPath === '/moreThan') {
-          this.$router.push('/getResult');
-        } else if (currentPath === '/lessThan') {
-          this.$router.push('/getResult');
-        } else {
-          this.$router.push('/moreThan');
+        if (currentPath === '/prelim') {
+          if (this.responseData.SVM_Probability >= 35) {
+            this.$router.push('/moreThan');
+          } else {
+            this.$router.push('/lessThan');
+          }
         }
-      } else {
-        // Navigate to another route or keep the same logic as needed
-        this.$router.push('/lessThan');
-      }
-  },
+        else {
+          this.$router.push('/getResult');
+        }
+      },
       closeModal() {
         this.$emit('update:visible', false);
       },

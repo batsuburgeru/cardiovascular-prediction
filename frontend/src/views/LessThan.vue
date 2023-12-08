@@ -85,7 +85,8 @@ methods: {
       if(response.status === 200) {
         this.responseData = response.data;
         const finalInput = {...this.prelimData, ...this.lessThanData};
-        localStorage.setItem('finalInput', JSON.stringify(finalInput))
+        localStorage.setItem('finalInput', JSON.stringify(finalInput));
+        localStorage.setItem('responseData', JSON.stringify(this.responseData));
         console.log('Request Successful:', response.data);
       }
       else {
