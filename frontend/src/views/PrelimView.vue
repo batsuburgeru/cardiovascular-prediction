@@ -5,7 +5,7 @@
     <div class="prelim container-fluid align-items-center" style="height: calc(100vh - 95px); background-color: white;" >
       <div class="row justify-content-center p-5">
         <div class="col-lg-5 text-start p-5" style="background-color: #E5FCFF;">
-          <h2>Preliminary Test</h2>
+          <h2 class="fw-bold">Preliminary Test</h2>
           <form action="">
             <div class="mb-3 form-floating">
               <input type="age" class="form-control" id="inputAge" placeholder="e.g 60" v-model="prelimData.age">
@@ -42,7 +42,7 @@
                 <label for="inputCP">Chest Paint Type (CP)</label>
               </div>
               <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="button" @click="handleSubmit">Submit</button>
+                <button class="btn btn-primary fw-bold" type="button" @click="handleSubmit">Submit</button>
               </div>
             </form>
           </div>

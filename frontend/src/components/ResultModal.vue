@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalToggleLabel">Logistic Regression</h5>
+          <h5 class="modal-title fw-bold" id="exampleModalToggleLabel">Logistic Regression Result</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" v-if="responseData">
@@ -32,7 +32,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalToggleLabel2">KNN</h5>
+          <h5 class="modal-title fw-bold" id="exampleModalToggleLabel2">K-Nearest Neighbors Algorithm Result</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" v-if="responseData">
@@ -60,7 +60,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalToggleLabel3">SVM</h5>
+          <h5 class="modal-title fw-bold" id="exampleModalToggleLabel3">Support Vector Machine Result</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" v-if="responseData">

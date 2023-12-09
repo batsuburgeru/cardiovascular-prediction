@@ -2,10 +2,10 @@
   <main>
     <NavBar class="no-print"/>
     <div class="row align-items-start mx-2">
-      <h2 class="mb-5"> Result </h2>
+      <h2 class="mb-5 fw-bold"> EVALUATION REPORT </h2>
     <div class="col">
       <div class="mx-auto" style="width: 75%;">
-        <h3>Input</h3>
+        <h3 class="fw-bold mb-5">INPUT DATA</h3>
         <div v-if="finalData" class="row text-start">
           <dl class="row">
             <dt class="col-sm-10 dt-no-wrap">Age:</dt>
@@ -43,7 +43,7 @@
     </div>
     <div class="col">
       <div class="mx-auto" style="width: 100%;">
-        <h3 class="">SVM Result</h3>
+        <h3 class="fw-bold mb-5">SVM RESULT</h3>
         <div v-if="responseData" class="row text-start">
           <dl class="row">
             <dt class="col-sm-8 dt-no-wrap">SVM Predicted Class:</dt>
@@ -94,8 +94,8 @@
         </div>
     </div>
     <div>
-        <button type="button" class="btn btn-outline-success btn-lg px-5 mx-3 w-45 no-print" @click="printPage" >Download Ticket</button>
-        <button type="button" class="btn btn-outline-success btn-lg px-5 mx-3 w-45 no-print" @click="printPage" >Print Ticket</button>
+        <button type="button" class="btn btn-outline-primary btn-lg px-5 mx-3 w-45 no-print fw-bold" @click="printPage" >Download Ticket</button>
+        <button type="button" class="btn btn-outline-primary btn-lg px-5 mx-3 w-45 no-print fw-bold" @click="printPage" >Print Ticket</button>
     </div>
     <div class="mt-2 row">
       <div class="mb-3 form-floating">
@@ -110,6 +110,7 @@
     </div>
 
   </div>
+    <h3 class="fw-bold mt-5 pt-5 no-print"> VISUALIZATION REPORT</h3>
     <div v-for="(url, index) in imageUrls" :key="index" class="crop no-print">
       <img :src="url" alt="Image" class="img-fluid img-thumbnail rounded mx-auto d-block"/>
     </div>
@@ -150,10 +151,7 @@ export default {
         SVM_Recall: '',
         SVM_F1_Score: '',
         SVM_Mean_Squared_Error: '',
-        SVM_Root_Mean_Squared_Error: '',
-
-
-
+        SVM_Root_Mean_Squared_Error: ''
       }
     }
   },
@@ -184,7 +182,6 @@ methods: {
 created() {
   this.generateRandomNumber();
 }
-
 }
 </script>
 
@@ -200,7 +197,7 @@ created() {
 .crop img {
   flex-shrink: 0;
   min-width: 115%;
-  min-height: 100%;
+  min-height: 110%;
 }
 .dt-no-wrap {
   white-space: nowrap;
@@ -220,9 +217,6 @@ created() {
   .col {
     margin: 0;
     padding: 0;
-  }
-  .alert {
-    
   }
   .no-print {
     display: none;

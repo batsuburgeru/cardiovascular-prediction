@@ -6,7 +6,7 @@
         <ResultModal :visible="modalVisible" :responseData="responseData" @update:visible="modalVisible = $event"></ResultModal>
         <div class="row justify-content-center p-5">
           <div class="col-lg-5 text-start p-5" style="background-color: #E5FCFF;">
-            <h2>Additional Information</h2>
+            <h2 class="fw-bold">Additional Information</h2>
             <form action="">
               <div class="mb-3 form-floating">
                   <input type="number" class="form-control shadow bg-body rounded" id="inputChol" placeholder="e.g 60" v-model="lessThanData.chol"> 
