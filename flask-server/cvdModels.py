@@ -351,16 +351,16 @@ def svmMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, 
     
     X_std = scaler.fit_transform(X)
     feature_combinations = list(combinations(range(X.shape[1]),2))
-    
+
     feature_names = X_df.columns
-    
+
     num_subplots = len(feature_combinations)
-    num_rows = int(np.ceil(num_subplots / 3))
-    
-    fig, axs = plt.subplots(num_rows, 3, figsize=(20, 4 * num_rows))
+    num_rows = int(np.ceil(num_subplots / 6))  # Change the number of columns here
+
+    fig, axs = plt.subplots(num_rows, 6, figsize=(40, 4 * num_rows))  # Adjust the figure size accordingly
     fig.subplots_adjust(hspace=0.4, wspace=0.4)
     axs = axs.flatten()
-    
+
     for i, (feature_idx1, feature_idx2) in enumerate(feature_combinations):
         X_pair_std = X_std[:, [feature_idx1, feature_idx2]]
         
@@ -382,7 +382,7 @@ def svmMoreThan(age, gender, restbps, history, cp, chol, fbs, restecg, thalach, 
         
     for j in range(num_subplots, len(axs)):
         axs[j].axis('off')
-    
+
     plt.savefig("src/assets/visualizations/svmResult.png")
         
     return svmMoreThanPredictedClass, svmMoreThanProbability, svmMoreThanAccuracy, svmMoreThanConfusionMatrix, svmMoreThanPrecision, svmMoreThanRecall, svmMoreThanF1, svmMoreThanMse, svmMoreThanRmse
@@ -449,16 +449,16 @@ def svmLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
     
     X_std = scaler.fit_transform(X)
     feature_combinations = list(combinations(range(X.shape[1]),2))
-    
+
     feature_names = X_df.columns
-    
+
     num_subplots = len(feature_combinations)
-    num_rows = int(np.ceil(num_subplots / 3))
-    
-    fig, axs = plt.subplots(num_rows, 3, figsize=(20, 4 * num_rows))
+    num_rows = int(np.ceil(num_subplots / 6))  # Change the number of columns here
+
+    fig, axs = plt.subplots(num_rows, 6, figsize=(40, 4 * num_rows))  # Adjust the figure size accordingly
     fig.subplots_adjust(hspace=0.4, wspace=0.4)
     axs = axs.flatten()
-    
+
     for i, (feature_idx1, feature_idx2) in enumerate(feature_combinations):
         X_pair_std = X_std[:, [feature_idx1, feature_idx2]]
         
@@ -480,8 +480,9 @@ def svmLessThan(age, gender, restbps, history, cp, chol, fbs, restecg):
         
     for j in range(num_subplots, len(axs)):
         axs[j].axis('off')
-    
+
     plt.savefig("src/assets/visualizations/svmResult.png")
+
     
     return svmLessThanPredictedClass, svmLessThanProbability, svmLessThanAccuracy, svmLessThanConfusionMatrix, svmLessThanPrecision, svmLessThanRecall, svmLessThanF1, svmLessThanMse, svmLessThanRmse
 

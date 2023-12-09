@@ -1,8 +1,8 @@
 <template>
   <main>
-    <NavBar/>
-    <div class="row align-items-start px-5 mx-5">
-      <h2> Result </h2>
+    <NavBar class="no-print"/>
+    <div class="row align-items-start mx-2">
+      <h2 class="mb-5"> Result </h2>
     <div class="col">
       <div class="mx-auto" style="width: 75%;">
         <h3>Input</h3>
@@ -14,10 +14,10 @@
             <dt class="col-sm-10 dt-no-wrap">Gender:</dt>
             <dd class="col-sm-2">{{ finalData.gender }}</dd>
 
-            <dt class="col-sm-10 dt-no-wrap">Resting Blood Pressure:</dt>
+            <dt class="col-sm-10">Resting Blood Pressure:</dt>
             <dd class="col-sm-2">{{ finalData.trestbps }}</dd>
 
-            <dt class="col-sm-10 dt-no-wrap">History of Heart Disease:</dt>
+            <dt class="col-sm-10">History of Heart Disease:</dt>
             <dd class="col-sm-2">{{ finalData.history }}</dd>
 
             <dt class="col-sm-10 dt-no-wrap">Chest Pain Type:</dt>
@@ -43,47 +43,74 @@
     </div>
     <div class="col">
       <div class="mx-auto" style="width: 100%;">
-        <h3>SVM Result</h3>
+        <h3 class="">SVM Result</h3>
         <div v-if="responseData" class="row text-start">
           <dl class="row">
-            <dt class="col-sm-10 dt-no-wrap">SVM Predicted Class:</dt>
+            <dt class="col-sm-8 dt-no-wrap">SVM Predicted Class:</dt>
             <dd class="col-sm-2">{{ responseData.SVM_Predicted_Class }}</dd>
 
-            <dt class="col-sm-10 dt-no-wrap">SVM Probability:</dt>
-            <dd class="col-sm-2">{{ responseData.SVM_Probability }}</dd>
+            <dt class="col-sm-8 dt-no-wrap">SVM Probability:</dt>
+            <dd class="col-sm-2">{{ responseData.SVM_Probability }}%</dd>
 
-            <dt class="col-sm-10 dt-no-wrap">SVM Accuracy:</dt>
-            <dd class="col-sm-2">{{ responseData.SVM_Accuracy }}</dd>
+            <dt class="col-sm-8 dt-no-wrap">SVM Accuracy:</dt>
+            <dd class="col-sm-2">{{ responseData.SVM_Accuracy }}%</dd>
 
-            <dt class="col-sm-10 dt-no-wrap">SVM Confusion Matrix:</dt>
-            <dd class="col-sm-2">{{ responseData.SVM_Confusion_Matrix[0] }}</dd>
-            <dt class="col-sm-10 dt-no-wrap"></dt>
-            <dd class="col-sm-2">{{ responseData.SVM_Confusion_Matrix[1] }}</dd>
+            <dt class="col-sm-8 dt-no-wrap">SVM Confusion Matrix:</dt>
+            <dd class="col-sm-2 dt-no-wrap">{{ responseData.SVM_Confusion_Matrix[0] }}</dd>
+            <dt class="col-sm-8 dt-no-wrap"></dt>
+            <dd class="col-sm-2 dt-no-wrap">{{ responseData.SVM_Confusion_Matrix[1] }}</dd>
 
-            <dt class="col-sm-10 dt-no-wrap">SVM Precision:</dt>
-            <dd class="col-sm-2">{{ responseData.SVM_Precision}}</dd>
+            <dt class="col-sm-8 dt-no-wrap">SVM Precision:</dt>
+            <dd class="col-sm-2">{{ responseData.SVM_Precision}}%</dd>
 
-            <dt class="col-sm-10 dt-no-wrap">SVM Recall:</dt>
-            <dd class="col-sm-2">{{ responseData.SVM_Recall }}</dd>
+            <dt class="col-sm-8 dt-no-wrap">SVM Recall:</dt>
+            <dd class="col-sm-2">{{ responseData.SVM_Recall }}%</dd>
 
-            <dt class="col-sm-10 dt-no-wrap">SVM F1 Score:</dt>
+            <dt class="col-sm-8 dt-no-wrap">SVM F1 Score:</dt>
             <dd class="col-sm-2">{{ responseData.SVM_F1_Score}}</dd>
 
-            <dt class="col-sm-10">SVM Mean Squared Error (MSE):</dt>
+            <dt class="col-sm-8">SVM Mean Squared Error (MSE):</dt>
             <dd class="col-sm-2">{{ responseData.SVM_Mean_Squared_Error }}</dd>
 
-            <dt class="col-sm-10">SVM Root Mean Squared Error (RMSE):</dt>
+            <dt class="col-sm-8">SVM Root Mean Squared Error (RMSE):</dt>
             <dd class="col-sm-2">{{ responseData.SVM_Root_Mean_Squared_Error }}</dd>
-
           </dl>
         </div>
       </div>
     </div>
-    <div class="col">
-      One of three columns
+    <div class="col d-flex flex-column align-items-center gap-2">
+    <div class="row justify-content-center px-5 ">
+        <div class="col-lg-12">
+            <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center justify-content-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2 fs-1 p-1 no-print"></i>
+                <div>
+                    <strong v-if="responseData.SVM_Probability <45">Low Chance of Cardiovascular Disease! {{ responseData.SVM_Probability }}%</strong>
+                    <strong v-if="responseData.SVM_Probability >=45 ">High Chance of Cardiovascular Disease! {{ responseData.SVM_Probability }}%</strong>
+                    <p class="mb-0" v-if="responseData.SVM_Probability <45">For further investigation of symptoms, the patient is recommended to be admitted to Emergency Room. </p>
+                    <p class="mb-0" v-if="responseData.SVM_Probability >=45">For further specialist checking, the patient is recommended to be admitted for confinement. </p>
+                  </div>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
     </div>
+    <div>
+        <button type="button" class="btn btn-outline-success btn-lg px-5 mx-3 w-45 no-print" @click="printPage" >Download Ticket</button>
+        <button type="button" class="btn btn-outline-success btn-lg px-5 mx-3 w-45 no-print" @click="printPage" >Print Ticket</button>
+    </div>
+    <div class="mt-2 row">
+      <div class="mb-3 form-floating">
+        <input type="text" class="form-control" id="inputName" placeholder="Enter your Name" required>
+        <label for="inputName">Patient Name:</label>
+    </div>
+    <div class="mb-3 form-floating">
+        <input type="text" class="form-control" id="patientId" :value="randomNumber" disabled>
+        <label for="patientId">Patient ID:</label>
+    </div>
+    </div>
+    </div>
+
   </div>
-    <div v-for="(url, index) in imageUrls" :key="index" class="crop">
+    <div v-for="(url, index) in imageUrls" :key="index" class="crop no-print">
       <img :src="url" alt="Image" class="img-fluid img-thumbnail rounded mx-auto d-block"/>
     </div>
   </main>
@@ -100,6 +127,7 @@ export default {
   },
   data() {
     return {
+      randomNumber: null,
       imageUrls: [],
       finalData: {
         age: '',
@@ -144,26 +172,61 @@ mounted() {
 } catch (error) {
   console.error(error);
 }
+},
+methods: {
+  generateRandomNumber() {
+      this.randomNumber = Math.floor(Math.random() * 99999) + 100000;  // Generate a new random number between 0 and 100
+    },
+  printPage() {
+    window.print()
+  }
+},
+created() {
+  this.generateRandomNumber();
 }
+
 }
 </script>
 
 <style scoped>
 .crop {
-  margin: 3rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  height: 4550px; /* Adjust as needed */
+  height: 100%;
 }
 
 .crop img {
   flex-shrink: 0;
-  min-width: 100%;
+  min-width: 115%;
   min-height: 100%;
 }
 .dt-no-wrap {
   white-space: nowrap;
   }
+@media print {
+  @page {
+    margin: 20mm;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  .col {
+    margin: 0;
+    padding: 0;
+  }
+  .alert {
+    
+  }
+  .no-print {
+    display: none;
+  }
+}
+
 </style>

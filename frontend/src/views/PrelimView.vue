@@ -1,5 +1,5 @@
 <template>
-  <main class="home m-2" style="overflow-x: hidden;">
+  <main class="home" style="overflow-x: hidden;">
     <NavBar/>
     <ResultModal :visible="modalVisible" :responseData="responseData" @update:visible="modalVisible = $event"></ResultModal>
     <div class="prelim container-fluid align-items-center" style="height: calc(100vh - 95px); background-color: white;" >

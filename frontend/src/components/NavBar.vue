@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar bg-body-tertiary mt-4">
+<nav class="navbar bg-body-tertiary py-4">
   <div class="container-fluid">
     <router-link to="/" class="navbar-brand px-5">B P M M</router-link>
     <form class="d-flex" role="search">
@@ -17,3 +17,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+nav {
+  background-color: white;
+}
+</style>

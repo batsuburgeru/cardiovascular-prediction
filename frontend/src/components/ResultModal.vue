@@ -8,15 +8,15 @@
         </div>
         <div class="modal-body" v-if="responseData">
           <p>Logistic Regression Predicted Class: {{ responseData.Logistic_Regression_Predicted_Class}}</p>
-          <p>Logistic Regression Probability: {{ responseData.Logistic_Regression_Probability }}</p>
-          <p>Logistic Regression Accuracy: {{ responseData.Logistic_Regression_Accuracy }}</p>
+          <p>Logistic Regression Probability: {{ responseData.Logistic_Regression_Probability }}%</p>
+          <p>Logistic Regression Accuracy: {{ responseData.Logistic_Regression_Accuracy }}%</p>
           <div style="text-align: left;">
             <p>KNN Confusion Matrix:</p>
             <p>{{ responseData.Logistic_Regression_Confusion_Matrix[0] }}</p>
             <p>{{ responseData.Logistic_Regression_Confusion_Matrix[1] }}</p>
           </div>
-          <p>Logistic Regression Precision: {{ responseData.Logistic_Regression_Precision }}</p>
-          <p>Logistic Regression Recall: {{ responseData.Logistic_Regression_Recall }}</p>
+          <p>Logistic Regression Precision: {{ responseData.Logistic_Regression_Precision }}%</p>
+          <p>Logistic Regression Recall: {{ responseData.Logistic_Regression_Recall }}%</p>
           <p>Logistic Regression F1 Score: {{ responseData.Logistic_Regression_F1_Score}}</p>
           <p>Logistic Regression Mean Squared Error (MSE): {{ responseData.Logistic_Regression_Mean_Squared_Error }}</p>
           <p>Logistic Regression Root Mean Squared Error (RMSE): {{ responseData.Logistic_Regression_Root_Mean_Squared_Error }}</p>
@@ -37,15 +37,15 @@
         </div>
         <div class="modal-body" v-if="responseData">
           <p>KNN Predicted Class: {{ responseData.KNN_Predicted_Class}}</p>
-          <p>KNN Probability: {{ responseData.KNN_Probability }}</p>
-          <p>KNN Accuracy: {{ responseData.KNN_Accuracy }}</p>
+          <p>KNN Probability: {{ responseData.KNN_Probability }}%</p>
+          <p>KNN Accuracy: {{ responseData.KNN_Accuracy }}%</p>
           <div style="text-align: left;">
             <p>KNN Confusion Matrix:</p>
             <p>{{ responseData.KNN_Confusion_Matrix[0] }}</p>
             <p>{{ responseData.KNN_Confusion_Matrix[1] }}</p>
           </div>
-          <p>KNN Precision: {{ responseData.KNN_Precision }}</p>
-          <p>KNN Recall: {{ responseData.KNN_Recall }}</p>
+          <p>KNN Precision: {{ responseData.KNN_Precision }}%</p>
+          <p>KNN Recall: {{ responseData.KNN_Recall }}%</p>
           <p>KNN F1 Score: {{ responseData.KNN_F1_Score}}</p>
           <p>KNN Mean Squared Error (MSE): {{ responseData.KNN_Mean_Squared_Error }}</p>
           <p>KNN Root Mean Squared Error (RMSE): {{ responseData.KNN_Root_Mean_Squared_Error }}</p>
@@ -65,15 +65,15 @@
         </div>
         <div class="modal-body" v-if="responseData">
           <p>SVM Predicted Class: {{ responseData.SVM_Predicted_Class}}</p>
-          <p>SVM Probability: {{ responseData.SVM_Probability }}</p>
-          <p>SVM Accuracy: {{ responseData.SVM_Accuracy }}</p>
+          <p>SVM Probability: {{ responseData.SVM_Probability }}%</p>
+          <p>SVM Accuracy: {{ responseData.SVM_Accuracy }}%</p>
           <div style="text-align: left;">
             <p>SVM Confusion Matrix:</p>
             <p>{{ responseData.SVM_Confusion_Matrix[0] }}</p>
             <p>{{ responseData.SVM_Confusion_Matrix[1] }}</p>
           </div>
-          <p>SVM Precision: {{ responseData.SVM_Precision }}</p>
-          <p>SVM Recall: {{ responseData.SVM_Recall }}</p>
+          <p>SVM Precision: {{ responseData.SVM_Precision }}%</p>
+          <p>SVM Recall: {{ responseData.SVM_Recall }}%</p>
           <p>SVM F1 Score: {{ responseData.SVM_F1_Score}}</p>
           <p>SVM Mean Squared Error (MSE): {{ responseData.SVM_Mean_Squared_Error }}</p>
           <p>SVM Root Mean Squared Error (RMSE): {{ responseData.SVM_Root_Mean_Squared_Error }}</p>
